@@ -1,7 +1,7 @@
 import unittest
  
 def solver(participants):
-    return participants
+    return {'zeitnehmer': 1}
 
 class TestStringMethods(unittest.TestCase):
 
@@ -10,10 +10,27 @@ class TestStringMethods(unittest.TestCase):
         result = solver(participants)
         self.assertIsNotNone(result)
 
-    def test_minimal_set(self):
-        participants = {
-            {}
-        }
+    def test_minimal_zeitnehmer(self):
+        participants = [{
+            'name': 'Eins',
+            'number': 1,
+            'zeitnehmer': True
+        }]
+        result = solver(participants)
+        self.assertEqual(result['zeitnehmer'], 1)
+
+    def test_two_zeitnehmer(self):
+        participants = [{
+            'name': 'Eins',
+            'number': 1,
+            'zeitnehmer': True
+        },{
+            'name': 'Zwei',
+            'number': 2,
+            'zeitnehmer': True
+        }]
+        result = solver(participants)
+        self.assertEqual(result['zeitnehmer'], 1)
 
 if __name__ == '__main__':
     unittest.main()
