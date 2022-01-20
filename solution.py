@@ -1,12 +1,16 @@
 import unittest
  
 def solver(participants):
-    return {'zeitnehmer': 1}
+    return {'zeitnehmer': participants[0]['number']}
 
 class TestStringMethods(unittest.TestCase):
 
     def test_solver(self):
-        participants = {}
+        participants = [{
+            'name': 'Eins',
+            'number': 1,
+            'zeitnehmer': True
+        }]
         result = solver(participants)
         self.assertIsNotNone(result)
 
@@ -21,16 +25,16 @@ class TestStringMethods(unittest.TestCase):
 
     def test_two_zeitnehmer(self):
         participants = [{
-            'name': 'Eins',
-            'number': 1,
-            'zeitnehmer': True
-        },{
             'name': 'Zwei',
             'number': 2,
             'zeitnehmer': True
+        },{
+            'name': 'Eins',
+            'number': 1,
+            'zeitnehmer': True
         }]
         result = solver(participants)
-        self.assertEqual(result['zeitnehmer'], 1)
+        self.assertEqual(result['zeitnehmer'], 2)
 
 if __name__ == '__main__':
     unittest.main()
