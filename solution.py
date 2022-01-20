@@ -10,6 +10,11 @@ class TestStringMethods(unittest.TestCase):
         result = solver(participants)
         self.assertIsNotNone(result)
 
+    def test_minimal_set(self):
+        participants = {
+            {}
+        }
+
 if __name__ == '__main__':
     unittest.main()
 
@@ -17,6 +22,10 @@ if __name__ == '__main__':
 
 ## Ablauf
 # csv einlesen
-# optimierung
-    # -> participant --> rollenzuordnung
+    # -> csv --> participants
+# preprocessing
+    # -> participants --> reduced participants (hard kernel)
+# optimierung (solver)
+    # -> reduced participants --> rollenzuordnung
 # ausgabe
+    # -> rollenzuordnung --> Ausgabe
