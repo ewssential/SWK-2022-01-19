@@ -1,7 +1,8 @@
 import unittest
  
 def solver(participants):
-    return {'zeitnehmer': participants[0]['number']}
+    zeitnehmer = next(filter(lambda x: x['zeitnehmer'] == True, participants))
+    return {'zeitnehmer': zeitnehmer['number']}
 
 class TestStringMethods(unittest.TestCase):
 
@@ -35,6 +36,19 @@ class TestStringMethods(unittest.TestCase):
         }]
         result = solver(participants)
         self.assertEqual(result['zeitnehmer'], 2)
+
+    def test_two_zeitnehmer(self):
+        participants = [{
+            'name': 'Zwei',
+            'number': 2,
+            'zeitnehmer': False
+        },{
+            'name': 'Eins',
+            'number': 1,
+            'zeitnehmer': True
+        }]
+        result = solver(participants)
+        self.assertEqual(result['zeitnehmer'], 1)
 
 if __name__ == '__main__':
     unittest.main()
